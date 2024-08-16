@@ -64,7 +64,10 @@ def daofinder(data,  threshold, fwhm = 4.0):
     """
     #use daostarfinder to pick dots
     daofind = DAOStarFinder(fwhm=fwhm, threshold=threshold, brightest=None, exclude_border=True)
-    sources = daofind(data)
+    try:
+        sources = daofind(data)
+    except:
+        sources = None
     
     #return none if nothing was picked else return table
     if type(sources) == type(None):
