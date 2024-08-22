@@ -3,7 +3,7 @@ os.environ['OPENBLAS_NUM_THREADS'] = '1'
 import numpy as np
 
 #number of channels
-channel_list = [1,2,3]
+channel_list = [1,2]
 
 #submit multiple channels 
 for channel in channel_list:
