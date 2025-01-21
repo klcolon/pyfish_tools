@@ -521,7 +521,7 @@ def deconvolute_many(images, sigma_hpgb = 1, kern_hpgb = 5, kern_rl = 5,
                 path = futures[fut]
                 print(f'Path {path} completed after {time.time() - start} seconds')
                               
-def bkgrd_corr_one(image_path, correction_type = None, stack_bkgrd=None, num_channels=4,
+def signalprocess_single(image_path, correction_type = None, stack_bkgrd=None, num_channels=4,
                    gamma = 1.4, kern_hpgb=5, sigma = 40, rb_radius=5, hyb_offset=0, p_min=80,
                    p_max = 99.999, norm_int = True, rollingball = False, 
                    lowpass=True, match_hist=True, subtract=True, divide=False, tophat_raw=False):
@@ -615,7 +615,7 @@ def bkgrd_corr_one(image_path, correction_type = None, stack_bkgrd=None, num_cha
         print('writing image')
         tf.imwrite(str(output_path), corr_img)
 
-def correct_many(images, correction_type = None, stack_bkgrd=None, num_channels=4,
+def SignalProcessParallel(images, correction_type = None, stack_bkgrd=None, num_channels=4,
                  gamma = 1.4,kern_hpgb=5, sigma=40, rb_radius=5, hyb_offset=0,p_min=80,
                  p_max = 99.999, norm_int = True,
                  rollingball=False, lowpass = True, match_hist=True, subtract=True, divide=False, tophat_raw=False):
@@ -647,7 +647,7 @@ def correct_many(images, correction_type = None, stack_bkgrd=None, num_channels=
     start = time.time()
     
     if type(images) != list:
-        bkgrd_corr_one(images, correction_type,stack_bkgrd, num_channels,  
+        signalprocess_single(images, correction_type,stack_bkgrd, num_channels,  
                        gamma, kern_hpgb,sigma, rb_radius, hyb_offset, p_min,
                        p_max, norm_int, rollingball, 
                        lowpass,  match_hist, subtract, divide, tophat_raw)
@@ -657,7 +657,7 @@ def correct_many(images, correction_type = None, stack_bkgrd=None, num_channels=
         with ProcessPoolExecutor(max_workers=12) as exe:
             futures = {}
             for path in images:
-                fut = exe.submit(bkgrd_corr_one, path, correction_type, stack_bkgrd,
+                fut = exe.submit(signalprocess_single, path, correction_type, stack_bkgrd,
                                  num_channels, gamma,kern_hpgb, sigma, rb_radius,hyb_offset,
                                  p_min, p_max, norm_int,
                                  rollingball, lowpass,  match_hist, subtract, divide, tophat_raw)

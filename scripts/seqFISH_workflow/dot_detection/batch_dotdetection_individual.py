@@ -18,8 +18,8 @@ position_name = f'MMStack_Pos{JOB_ID}.ome.tif'
 files, _, _ = find_matching_files(directory, 'HybCycle_{hyb}' + f'/{position_name}')
 files = [str(f) for f in files]
 
-threshold    = 0.02 # threshold to detect all dots (if image was scaled)
-num_channels = 4 #number of channels in image
+threshold    = 0.2 # threshold to detect all dots (if image was scaled)
+num_channels = 2 #number of channels in image
 channel      = channel #which channel to analyze
 size_cutoff  = None # sigma cutoff for size distribution
 

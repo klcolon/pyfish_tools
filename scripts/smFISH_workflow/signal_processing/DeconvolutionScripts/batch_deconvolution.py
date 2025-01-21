@@ -1,14 +1,14 @@
 from pre_processing import deconvolute_many
 from pathlib import Path
 import os
-from util import find_matching_files
+from webfish_tools.util import find_matching_files
 
 JOB_ID = os.getenv('SLURM_ARRAY_TASK_ID', 0)
 
 print(f'This is task {JOB_ID}')
 
 #path to images
-directory = Path("/path/to/data/fiducial_aligned")
+directory = Path("/path/to/data")
 position_name = f'MMStack_Pos{JOB_ID}.ome.tif'
 files, _, _ = find_matching_files(directory, 'HybCycle_{hyb}' + f'/{position_name}')
 files = [str(f) for f in files]
