@@ -19,7 +19,7 @@ for channel in channel_list:
         f.write("#SBATCH --mem=50G\n") # RAM amount
         f.write("#SBATCH --cpus-per-task=12\n") #number of cpus
         f.write("#SBATCH --time=6:00:00\n") #how much time
-        f.write("#SBATCH --array=0-87\n") #position list or threshold (depends on intentions)
+        f.write("#SBATCH --array=0-244\n") #position list or threshold (depends on intentions)
         f.write("pwd; hostname; date\n") #output path, hostname, date
         f.write("echo This is task $SLURM_ARRAY_TASK_ID\n") #output task id
         f.write("source ~/miniconda3/bin/activate\n") #activate source

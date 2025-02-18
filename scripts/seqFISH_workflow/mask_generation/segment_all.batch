@@ -14,10 +14,10 @@ source ~/miniconda3/bin/activate
 conda activate cellpose3
 
 cellpose \
-  --dir images \ #directory containing your stained images
-  --pretrained_model /home/kcolon/.cellpose/models/mouse_brain \ #path to your pretrained model
-  --diameter 94.64 \ #supply the diameter estimated from cellpose when training
-  --chan 1 \ #include two channels if you also have dapi
+  --dir images \ 
+  --pretrained_model /home/kcolon/.cellpose/models/mouse_brain \ 
+  --diameter 94.64 \ 
+  --chan 1 \ 
   --chan2 2
 
 date

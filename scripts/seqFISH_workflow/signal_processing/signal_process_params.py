@@ -8,7 +8,7 @@ JOB_ID = os.getenv('SLURM_ARRAY_TASK_ID', 0)
 print(f'This is task {JOB_ID}')
 
 #paths for real image
-directory = Path("/path/to/data/pyfish_tools/output/dapi_aligned")
+directory = Path("/groups/CaiLab/personal/Lex/raw/250203_mb_161genes/pyfish_tools/output/dapi_aligned")
 position_name = f'MMStack_Pos{JOB_ID}.ome.tif'
 
 files, _, _ = find_matching_files(directory, 'HybCycle_{hyb}' + f'/{position_name}')

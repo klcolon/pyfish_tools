@@ -12,11 +12,11 @@ JOB_ID = os.getenv('SLURM_ARRAY_TASK_ID', 0)
 print(f'This is task {JOB_ID}')
 
 #general path and position name
-directory     = Path("/path/to/data/dir")
+directory     = Path("/groups/CaiLab/personal/Lex/raw/250203_mb_161genes/pyfish_tools/output/max_projected")
 position_name = f'MMStack_Pos{JOB_ID}.ome.tif'
 
 #set reference positions
-ref = directory / "initial_background" / position_name
+ref = directory / "HybCycle_0" / position_name
 
 #use this for all hyb alignment
 files, _, _ = find_matching_files(directory, 'HybCycle_{hyb}' + f'/{position_name}')
