@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1
 #SBATCH --mem=100G
 #SBATCH --cpus-per-task=12
-#SBATCH --time=2:00:00
+#SBATCH --time=5:00:00
 #SBATCH --array=0
 
 pwd; hostname; date
@@ -13,11 +13,5 @@ source ~/miniconda3/bin/activate
 
 conda activate cellpose3
 
-cellpose \
-  --dir images \ #directory containing your stained images
-  --pretrained_model /home/kcolon/.cellpose/models/mouse_brain \ #path to your pretrained model
-  --diameter 94.64 \ #supply the diameter estimated from cellpose when training
-  --chan 1 \ #include two channels if you also have dapi
-  --chan2 2
-
+cellpose --dir images --pretrained_model /home/kcolon/.cellpose/models/nih3t3_polt --diameter 271  --chan 1 --chan2 2
 date
