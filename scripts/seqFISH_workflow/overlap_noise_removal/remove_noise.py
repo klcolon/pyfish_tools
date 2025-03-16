@@ -60,6 +60,10 @@ class ChannelNoiseRemover:
         # Reset index for safety
         df1 = df1.reset_index(drop=True)
         df2 = df2.reset_index(drop=True)
+
+        if df2.empty:
+            print("Warning: DataFrame is empty!")
+            return None
         
         # Initialize and fit the nearest neighbors model
         neigh = NearestNeighbors(n_neighbors=2, radius=self.radius, metric="euclidean", n_jobs=1)
@@ -123,6 +127,6 @@ class ChannelNoiseRemover:
 
 # Example usage:
 if __name__ == "__main__":
-    path = "/groups/CaiLab/personal/Lex/raw/241015_150_mouse/pyfish_tools/output/dots_detected/Channel_1/spots_in_cells/*/locations_z_*"
+    path = "/groups/CaiLab/personal/Lex/raw/250310_150_nih3t3_current/pyfish_tools/output/dots_detected/Channel_1/spots_in_cells/spots_norm/*/locations_z_*"
     remover = ChannelNoiseRemover(path, radius=0.75, total_hybs=24, total_rounds=4)
     remover.process_all_files()
